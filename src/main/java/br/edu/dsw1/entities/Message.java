@@ -1,4 +1,4 @@
-package br.edu.dsw1;
+package br.edu.dsw1.entities;
 
 public class Message {
 	private String name;
