@@ -12,7 +12,7 @@
 	<div class="flex flex-col w-1/2 min-h-1/2 border-solid rounded-xl border-gray-600 bg-white p-5 shadow-2xl shadow-black">
 		<h1 class="self-center text-2xl font-bold mt-8 mb-5">Send your message!</h1>
 		
-		<form class="flex flex-col items-center h-full justify-center mt-5">
+		<form action="register.do" method="POST" class="flex flex-col items-center h-full justify-center mt-5">
 			
 			<div class="w-2/3 border rounded-lg bg-gray-200 mb-5">
 				<input class="w-full text-lg bg-transparent px-5 py-4 outline-none" type="text" name="name" placeholder="Name" required>
