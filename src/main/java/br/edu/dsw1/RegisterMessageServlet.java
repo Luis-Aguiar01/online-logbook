@@ -23,11 +23,14 @@ public class RegisterMessageServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var name = request.getParameter("name");
-		var text = request.getParameter("text");
+		var text = request.getParameter("message");
 		
 		if (name != null && text != null) {
 			var message = new Message(name, text, LocalDateTime.now());
 			repository.addMessage(message);
+			request.setAttribute("messages", repository.getAll());
+			var dispatcher = request.getRequestDispatcher("messages.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 }

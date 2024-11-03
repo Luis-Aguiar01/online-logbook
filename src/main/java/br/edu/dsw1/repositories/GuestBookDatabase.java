@@ -17,6 +17,10 @@ public class GuestBookDatabase {
 		messages.add(message);
 	}
 	
+	public List<Message> getAll() {
+		return messages;
+	}
+	
 	public static GuestBookDatabase getInstance( ) {
 		if (instance == null) {
 			instance = new GuestBookDatabase();

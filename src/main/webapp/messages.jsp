@@ -1,5 +1,15 @@
+<%@page import="br.edu.dsw1.entities.Message"%>
+<%@page import="java.util.List"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="br.edu.dsw1.repositories.GuestBookDatabase"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%
+	List<Message> messages = (List<Message>) request.getAttribute("messages");
+	var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,16 +29,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="hover:bg-gray-100 transition duration-200">
-					<td class="py-4 px-6 w-1/5 border-b border-gray-300">Luis Henrique</td>
-					<td class="py-4 px-6 w-3/5 border-b border-gray-300 text-left">Hello, World! Hello, World! Hello, World! Hello, World! Hello, World! Hello, World!</td>
-					<td class="py-4 px-6 w-1/5 border-b border-gray-300 text-center">31/02/2000 12:32:12</td>
-				</tr>
-				<tr class="hover:bg-gray-100 transition duration-200">
-					<td class="py-4 px-6 w-1/5 border-b border-gray-300">Jane Doe</td>
-					<td class="py-4 px-6 w-3/5 border-b border-gray-300 text-left">This is a test message  slightly longer to test wrapping.</td>
-					<td class="py-4 px-6 w-1/5 border-b border-gray-300 text-center">31/02/2000 14:22:45</td>
-				</tr>
+				<% for (var message : messages) { %>
+					<tr class="hover:bg-gray-100 transition duration-200">
+						<td class="py-4 px-6 w-1/5 border-b border-gray-300"> <%= message.getName() %> </td>
+						<td class="py-4 px-6 w-3/5 border-b border-gray-300 text-center"> <%= message.getText() %> </td>
+						<td class="py-4 px-6 w-1/5 border-b border-gray-300 text-center"> <%= formatter.format(message.getDateTime()) %> </td>
+					</tr>
+				<% } %>
 			</tbody>
 		</table>
 	</div>
