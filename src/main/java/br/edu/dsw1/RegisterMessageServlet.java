@@ -28,9 +28,14 @@ public class RegisterMessageServlet extends HttpServlet {
 		if (name != null && text != null) {
 			var message = new Message(name, text, LocalDateTime.now());
 			repository.addMessage(message);
-			request.setAttribute("messages", repository.getAll());
-			var dispatcher = request.getRequestDispatcher("messages.jsp");
+			
+			var dispatcher = request.getRequestDispatcher("messages.do");
 			dispatcher.forward(request, response);
 		}
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("register.jsp");
 	}
 }
