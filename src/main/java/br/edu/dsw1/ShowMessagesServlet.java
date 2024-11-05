@@ -22,6 +22,7 @@ public class ShowMessagesServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+		response.setCharacterEncoding("UTF-8");
 		
 		var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		var out = response.getWriter();
@@ -29,7 +30,7 @@ public class ShowMessagesServlet extends HttpServlet {
 		var dispatcher = request.getRequestDispatcher("header.jsp");
 		dispatcher.include(request, response);
 		
-		out.println("<div class=\"flex bg-white p-10 w-5/6 items-center justify-center text-center rounded-lg shadow-lg mb-20\">\r\n"
+		out.println("<div class=\"flex flex-col bg-white p-10 w-5/6 items-center justify-center text-center rounded-lg shadow-lg mb-20\">\r\n"
 				+ "		<table class=\"table-auto w-full border-collapse\">\r\n"
 				+ "			<thead>\r\n"
 				+ "				<tr class=\"bg-gray-800 text-white\">\r\n"
@@ -53,6 +54,9 @@ public class ShowMessagesServlet extends HttpServlet {
 		
 		out.print("			</tbody>\r\n"
 				+ "		</table>\r\n"
+				+ "		<a href=\"register.jsp\" class=\"bg-blue-700 mt-20 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer text-white font-bold\">"
+				+ "			<button>Send Message</button>"
+				+ "		</a>"
 				+ "	</div>");
 		
 		dispatcher = request.getRequestDispatcher("footer.jsp");
@@ -61,6 +65,6 @@ public class ShowMessagesServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("register.jsp");
+		doPost(request, response);
 	}
 }

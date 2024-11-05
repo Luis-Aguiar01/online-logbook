@@ -29,6 +29,9 @@ public class RegisterMessageServlet extends HttpServlet {
 			var message = new Message(name, text, LocalDateTime.now());
 			repository.addMessage(message);
 			
+			var session = request.getSession(false);
+			session.setAttribute("name", name);
+			
 			var dispatcher = request.getRequestDispatcher("messages.do");
 			dispatcher.forward(request, response);
 		}

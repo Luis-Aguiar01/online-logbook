@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Livro de Registros de Convidados</title>
 </head>
